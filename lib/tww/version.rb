@@ -1,3 +1,3 @@
-module Tww
+module TWW
   VERSION = "0.1.0"
 end

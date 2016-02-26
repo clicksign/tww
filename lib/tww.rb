@@ -1,5 +1,5 @@
 require "tww/version"
 
-module Tww
+module TWW
   # Your code goes here...
 end

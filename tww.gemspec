@@ -5,7 +5,7 @@ require 'tww/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'tww'
-  spec.version       = Tww::VERSION
+  spec.version       = TWW::VERSION
   spec.authors       = ['Daniel Libanori']
   spec.email         = ['daniellibanori@gmail.com']
 
