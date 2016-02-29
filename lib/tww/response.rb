@@ -1,7 +1,8 @@
 module TWW
-  class SMS
+  class Response
     def ok?
       true
     end
   end
 end
+

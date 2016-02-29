@@ -1,11 +1,11 @@
-require 'tww/sms'
+require 'tww/response'
 
 module TWW
   class Client
     attr_accessor :config
 
     def deliver(phone, message)
-      SMS.new
+      Response.new
     end
   end
 end
