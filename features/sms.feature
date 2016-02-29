@@ -7,4 +7,4 @@ Feature: Send SMS
   Scenario: Send SMS to valid phone
     Given I have a valid phone number
     When I send message "Hello World"
-    Then I should not get any exception
+    Then I should get status "ok"

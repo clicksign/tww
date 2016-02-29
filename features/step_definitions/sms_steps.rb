@@ -1,17 +1,11 @@
 Given(/^I have a valid phone number$/) do
-  @number = 'valid'
+  @number = '11987654321'
 end
 
 When(/^I send message "([^"]*)"$/) do |message|
-  @message = message
-
-  begin
-    TWW.send_sms(@number, @message)
-  rescue => ex
-    @exception = ex
-  end
+  @status = @client.deliver(@number, message)
 end
 
-Then(/^I should not get any exception$/) do
-  expect(@exception).to be_nil
+When(/^I should get status "([^"]*)"$/) do |status|
+  expect(@status).to send('be_' + status)
 end
