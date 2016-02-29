@@ -1,6 +1,9 @@
 require 'byebug'
 require 'webmock/cucumber'
+require 'coveralls'
 require 'tww'
+
+Coveralls.wear!
 
 Before do
   TWW.config do |config|
