@@ -1,3 +1,3 @@
 class TWW::Config
-  attr_accessor :token
+  attr_accessor :username, :password
 end

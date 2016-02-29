@@ -3,7 +3,8 @@ require 'spec_helper'
 describe TWW do
   before do
     TWW.config do |config|
-      config.token = 'my token'
+      config.username = 'somebody'
+      config.password = 'someword'
     end
   end
 
@@ -11,7 +12,9 @@ describe TWW do
   let(:client) { TWW.client }
 
   it { expect(config).to_not be_nil }
-  it { expect(config.token).to eq('my token') }
+  it { expect(config.username).to eq('somebody') }
+  it { expect(config.password).to eq('someword') }
+
   it { expect(client).to_not be_nil }
   it { expect(client.config).to eq(config) }
 end
