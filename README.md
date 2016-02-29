@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/dlibanori/tww.svg?branch=master)](https://travis-ci.org/dlibanori/tww)
 [![Code Climate](https://codeclimate.com/github/dlibanori/tww/badges/gpa.svg)](https://codeclimate.com/github/dlibanori/tww)
+[![Coverage Status](https://coveralls.io/repos/github/dlibanori/tww/badge.svg?branch=master)](https://coveralls.io/github/dlibanori/tww?branch=master)
 
 Send SMS through TWW plataform. Avoid to handle with HTTP libraries or to parse XML response.
 
