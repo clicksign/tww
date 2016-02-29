@@ -1,10 +1,12 @@
 Given(/^I have a valid phone number$/) do
-  @phone_number = 'valid'
+  @number = 'valid'
 end
 
 When(/^I send message "([^"]*)"$/) do |message|
+  @message = message
+
   begin
-    TWW.send_sms(message)
+    TWW.send_sms(@number, @message)
   rescue => ex
     @exception = ex
   end
