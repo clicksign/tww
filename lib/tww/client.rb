@@ -6,8 +6,13 @@ module TWW
     attr_accessor :config
 
     def deliver(phone, message)
-      # NumUsu=string&Senha=string&SeuNum=string&Celular=string&Mensagem=string
-      # RestClient.post(endpoint)
+      RestClient.post endpoint,
+        NumUsu: config.username,
+        Senha: config.password,
+        SeuNum: config.from,
+        Celular: phone,
+        Mensagem: message
+
       Response.new
     end
 
