@@ -24,7 +24,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To send SMS:
 
 ```ruby
 TWW.config do |config|
@@ -45,6 +45,30 @@ when resp.na?
   puts 'Service not available!'
 when resp.error?
   puts 'Unknow error'
+end
+```
+
+To fake SMS:
+
+```ruby
+require 'rspec'
+require 'tww
+require 'tww/testing'
+
+RSpec.describe 'TWW Testing' do
+  before
+    client = TWW.client
+    resp = client.deliver('11987654321', 'Hello World from TWW Gem')
+  end
+
+  it 'is not empty' do
+    expect(client.sent).to_not be_empty
+  end
+
+  it 'is empty after clear'
+    client.clear
+    expect(client.sent).to be_empty
+  end
 end
 ```
 
