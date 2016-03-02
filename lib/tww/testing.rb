@@ -1,8 +1,8 @@
-require 'tww/response'
+require 'tww/client'
 
 module TWW
-  class Testing
-    attr_accessor :config, :sent
+  class Testing < Client
+    attr_accessor :sent
 
     def initialize
       @sent = []

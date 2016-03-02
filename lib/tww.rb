@@ -1,6 +1,7 @@
 require 'tww/version'
 require 'tww/config'
 require 'tww/client'
+require 'tww/rest'
 require 'tww/testing'
 
 module TWW
@@ -21,7 +22,7 @@ module TWW
   end
 
   def self.disable_testing!
-    @factory = TWW::Client
+    @factory = TWW::Rest
   end
 end
 

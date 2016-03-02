@@ -1,4 +1,3 @@
-require 'restclient'
 require 'tww/response'
 
 module TWW
@@ -6,27 +5,7 @@ module TWW
     attr_accessor :config
 
     def deliver(phone, message)
-      xml = RestClient.post endpoint,
-        NumUsu: config.username,
-        Senha: config.password,
-        SeuNum: config.from,
-        Celular: phone,
-        Mensagem: message
-
-      Response.parse(xml)
-    end
-
-    private
-    def host
-      'https://webservices.twwwireless.com.br'
-    end
-
-    def action
-      '/reluzcap/wsreluzcap.asmx/EnviaSMS'
-    end
-
-    def endpoint
-      host + action
+      raise 'Need to be implemented'
     end
   end
 end
