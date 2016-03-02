@@ -5,9 +5,6 @@ require 'tww/rest'
 require 'tww/testing'
 
 module TWW
-  # TODO Is this line necessary?
-  attr_accessor :config
-
   def self.config
     @config ||= Config.new
     @config.tap { |config|  yield(config) if block_given? }
