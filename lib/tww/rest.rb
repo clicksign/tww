@@ -2,7 +2,7 @@ require 'restclient'
 require 'tww/client'
 
 module TWW
-  class Rest < Client
+  class REST < Client
     def deliver(phone, message)
       xml = RestClient.post endpoint,
         NumUsu: config.username,

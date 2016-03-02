@@ -22,7 +22,7 @@ module TWW
   end
 
   def self.disable_testing!
-    @factory = TWW::Rest
+    @factory = TWW::REST
   end
 end
 
