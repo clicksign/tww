@@ -53,7 +53,8 @@ To fake SMS:
 ```ruby
 require 'rspec'
 require 'tww
-require 'tww/testing'
+
+TWW.enable_testing!
 
 RSpec.describe 'TWW Testing' do
   before
