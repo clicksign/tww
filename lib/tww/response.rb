@@ -2,10 +2,10 @@ require 'rexml/document'
 
 module TWW
   class Response
-    attr_accessor :document
+    attr_accessor :status
 
     def self.parse(xml)
-      new.tap { |r| r.document = REXML::Document.new(xml) }
+      new.tap { |r| r.status = REXML::Document.new(xml).elements[1].text }
     end
 
     def ok?
@@ -22,11 +22,6 @@ module TWW
 
     def error?
       status == 'Erro'
-    end
-
-    private
-    def status
-      document.elements[1].text
     end
   end
 end
