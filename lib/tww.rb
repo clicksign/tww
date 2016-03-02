@@ -1,8 +1,10 @@
 require 'tww/version'
 require 'tww/config'
 require 'tww/client'
+require 'tww/testing'
 
 module TWW
+  # TODO Is this line necessary?
   attr_accessor :config
 
   def self.config
@@ -11,6 +13,16 @@ module TWW
   end
 
   def self.client
-    Client.new.tap { |client| client.config = config }
+    @factory.new.tap { |client| client.config = config }
+  end
+
+  def self.enable_testing!
+    @factory = TWW::Testing
+  end
+
+  def self.disable_testing!
+    @factory = TWW::Client
   end
 end
+
+TWW.disable_testing!

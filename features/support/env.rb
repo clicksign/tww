@@ -14,3 +14,9 @@ Before do
 
   @client = TWW.client
 end
+
+Around('@testing') do |*, block|
+  TWW.enable_testing!
+  block.call
+  TWW.disable_testing!
+end
