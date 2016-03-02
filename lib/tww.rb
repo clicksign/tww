@@ -12,15 +12,21 @@ module TWW
     end
 
     def client
-      @factory.new.tap { |client| client.config = config }
+      @client ||= @factory.new
     end
 
     def enable_testing!
+      reset_client
       @factory = TWW::Testing
     end
 
     def disable_testing!
+      reset_client
       @factory = TWW::REST
+    end
+
+    def reset_client
+      @client = nil
     end
   end
 

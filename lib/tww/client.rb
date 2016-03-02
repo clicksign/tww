@@ -2,10 +2,10 @@ require 'tww/response'
 
 module TWW
   class Client
-    attr_accessor :config, :sent
+    attr_reader :config, :sent
 
     def initialize
-      @sent = []
+      @config, @sent = TWW.config, []
     end
 
     def deliver(phone, message)

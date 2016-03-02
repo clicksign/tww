@@ -11,4 +11,5 @@ describe TWW do
 
   it { expect(client).to_not be_nil }
   it { expect(client.config).to eq(config) }
+  it { expect(client).to eq(TWW.client) }
 end
