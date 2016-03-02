@@ -5,21 +5,23 @@ require 'tww/rest'
 require 'tww/testing'
 
 module TWW
-  def self.config
-    @config ||= Config.new
-    @config.tap { |config|  yield(config) if block_given? }
-  end
+  class << self
+    def config
+      @config ||= Config.new
+      @config.tap { |config|  yield(config) if block_given? }
+    end
 
-  def self.client
-    @factory.new.tap { |client| client.config = config }
-  end
+    def client
+      @factory.new.tap { |client| client.config = config }
+    end
 
-  def self.enable_testing!
-    @factory = TWW::Testing
-  end
+    def enable_testing!
+      @factory = TWW::Testing
+    end
 
-  def self.disable_testing!
-    @factory = TWW::REST
+    def disable_testing!
+      @factory = TWW::REST
+    end
   end
 
   disable_testing!
