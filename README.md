@@ -31,6 +31,7 @@ TWW.config do |config|
   config.username = 'you username goes here'
   config.password= 'you password goes here'
   config.from = 'Your identification (OPTIONAL)'
+  config.layout = 'Layout ID (JUST FOR VOICE MESSAGES)'
 end
 
 client = TWW.client
@@ -40,6 +41,7 @@ client.call('11987654321', 'I just called to say I love you')
 ```
 
 You can inspect TWW response:
+
 ```
 # Previous setup
 resp = client.sms('11987654321', 'Hello World using old fashioned SMS')
@@ -54,6 +56,13 @@ when resp.na?
 when resp.error?
   puts 'Unknow error'
 end
+```
+
+You can use obscure parameters from TWW API.
+
+```ruby
+# Previous setup
+client.call('11987654321', 'Var 1 value', var2: 'Var 2 value', retry: 3)
 ```
 
 To fake SMS:
