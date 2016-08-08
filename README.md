@@ -34,7 +34,15 @@ TWW.config do |config|
 end
 
 client = TWW.client
-resp = client.sms('11987654321', 'Hello World from TWW Gem')
+
+client.sms('11987654321', 'Hello World using old fashioned SMS')
+client.call('11987654321', 'I just called to say I love you')
+```
+
+You can inspect TWW response:
+```
+# Previous setup
+resp = client.sms('11987654321', 'Hello World using old fashioned SMS')
 
 case
 when resp.ok?
@@ -72,6 +80,10 @@ RSpec.describe 'TWW Testing' do
   end
 end
 ```
+
+## Support
+
+It supports Ruby version 2.1.x, 2.2.x and 2.3.x.
 
 ## Development
 
