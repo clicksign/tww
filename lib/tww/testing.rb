@@ -2,7 +2,7 @@ require 'tww/client'
 
 module TWW
   class Testing < Client
-    def deliver(phone, message)
+    def sms(phone, message)
       Response.parse("<string>#{ status(phone) }</string>").tap do |response|
         sent.push(phone: phone, message: message, response: response)
       end

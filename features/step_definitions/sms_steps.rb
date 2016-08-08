@@ -7,7 +7,7 @@ Given(/^I have a invalid phone number$/) do
 end
 
 When(/^I send message "([^"]*)"$/) do |message|
-  @status = @client.deliver(@number, message)
+  @status = @client.sms(@number, message)
 end
 
 When(/^I should get status "([^"]*)"$/) do |status|
