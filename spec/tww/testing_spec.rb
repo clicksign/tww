@@ -1,9 +1,20 @@
 require 'spec_helper'
 
 describe TWW::Testing do
+  include_examples 'client'
+
   before(:all) { TWW.enable_testing! }
   after(:all) { TWW.disable_testing! }
 
-  include_examples 'client'
-  it { expect(client.sent).to_not be_empty }
+  describe 'test array'do
+    subject { client.size }
+
+    before do
+      client.clear!
+      client.sms(phone, message)
+      client.call(phone, message)
+    end
+
+    it { should eq(2) }
+  end
 end

@@ -3,28 +3,55 @@ require 'tww/client'
 
 module TWW
   class REST < Client
-    def sms(phone, message)
-      xml = RestClient.post endpoint,
+    SMS = 'https://webservices.twwwireless.com.br' +
+      '/reluzcap/wsreluzcap.asmx/EnviaSMS'
+
+    CALL = 'http://webservices.fonadas.tww.com.br' +
+      '/ws/Fonadas.asmx/EnviaFonada'
+
+    def sms(phone, message, extras = {})
+      request(SMS, sms_params(phone, message, extras))
+    end
+
+    def call(phone, message, extras = {})
+      request(CALL, call_params(phone, message, extras))
+    end
+
+    private
+    def call_params(phone, message, extras)
+      now = Time.now.strftime('%Y-%m-%d %H:%M:%S')
+
+      {
+        numusu: config.username,
+        senha: config.password,
+        seunum: config.from,
+        idlayout: config.layout,
+        telefone: phone,
+        dataagendamento: now,
+        retry: 0,
+        retrytime: 0,
+        var1: message,
+        var2: nil,
+        var3: nil,
+        var4: nil,
+        var5: nil,
+        var6: nil
+      }.merge(extras)
+    end
+
+    def sms_params(phone, message, extras)
+      {
         NumUsu: config.username,
         Senha: config.password,
         SeuNum: config.from,
         Celular: phone,
         Mensagem: message
+      }.merge(extras)
+    end
 
+    def request(url, params)
+      xml = RestClient.post(url, params)
       Response.parse(xml)
-    end
-
-    private
-    def host
-      'https://webservices.twwwireless.com.br'
-    end
-
-    def action
-      '/reluzcap/wsreluzcap.asmx/EnviaSMS'
-    end
-
-    def endpoint
-      host + action
     end
   end
 end
