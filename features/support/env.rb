@@ -1,4 +1,3 @@
-require 'byebug'
 require 'webmock/cucumber'
 require 'coveralls'
 require 'tww'
