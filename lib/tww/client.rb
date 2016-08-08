@@ -8,7 +8,7 @@ module TWW
       @config, @sent = TWW.config, []
     end
 
-    def deliver(phone, message)
+    def sms(phone, message)
       raise 'Need to be implemented'
     end
   end

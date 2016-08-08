@@ -34,7 +34,7 @@ TWW.config do |config|
 end
 
 client = TWW.client
-resp = client.deliver('11987654321', 'Hello World from TWW Gem')
+resp = client.sms('11987654321', 'Hello World from TWW Gem')
 
 case
 when resp.ok?
@@ -59,7 +59,7 @@ TWW.enable_testing!
 RSpec.describe 'TWW Testing' do
   before
     client = TWW.client
-    resp = client.deliver('11987654321', 'Hello World from TWW Gem')
+    resp = client.sms('11987654321', 'Hello World from TWW Gem')
   end
 
   it 'is not empty' do

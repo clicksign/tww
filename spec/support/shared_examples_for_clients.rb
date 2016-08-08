@@ -2,17 +2,20 @@ shared_examples 'client' do
   subject(:client) { TWW.client }
   let(:phone) { '11987654321' }
   let(:message) { 'Hello World' }
-  let(:status) { client.deliver(phone, message) }
 
-  before { client.deliver(phone, message) }
+  before { client.sms(phone, message) }
 
-  context 'valid phone' do
-    let(:phone) { '11987654321' }
-    it { expect(status).to be_ok }
-  end
+  describe 'phone' do
+    subject { client.sms(phone, message) }
 
-  context 'valid phone' do
-    let(:phone) { 'invalid' }
-    it { expect(status).to be_nok }
+    context 'with valid number' do
+      let(:phone) { '11987654321' }
+      it { should be_ok }
+    end
+
+    context 'with invalid number' do
+      let(:phone) { 'invalid' }
+      it { should be_nok }
+    end
   end
 end

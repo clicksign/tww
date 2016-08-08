@@ -3,7 +3,7 @@ require 'tww/client'
 
 module TWW
   class REST < Client
-    def deliver(phone, message)
+    def sms(phone, message)
       xml = RestClient.post endpoint,
         NumUsu: config.username,
         Senha: config.password,
