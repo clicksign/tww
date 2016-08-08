@@ -8,7 +8,19 @@ module TWW
       @config, @sent = TWW.config, []
     end
 
-    def sms(phone, message)
+    def clear!
+      sent.clear
+    end
+
+    def size
+      sent.size
+    end
+
+    def sms(phone, message, extras = {})
+      raise 'Need to be implemented'
+    end
+
+    def call(phone, message, extras = {})
       raise 'Need to be implemented'
     end
   end
