@@ -2,7 +2,7 @@ require 'tww/client'
 
 module TWW
   class Testing < Client
-    def sms(phone, message, extras = {})
+    def deliver(phone, message, extras = {})
       request(phone, message, extras)
     end
 
