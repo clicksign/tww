@@ -16,7 +16,7 @@ module TWW
       sent.size
     end
 
-    def sms(phone, message, extras = {})
+    def deliver(phone, message, extras = {})
       raise 'Need to be implemented'
     end
 

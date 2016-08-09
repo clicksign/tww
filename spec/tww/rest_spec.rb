@@ -8,7 +8,8 @@ describe TWW::REST do
 
     before do
       client.clear!
-      client.sms(phone, message)
+
+      client.deliver(phone, message)
       client.call(phone, message)
     end
 

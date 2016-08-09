@@ -3,7 +3,7 @@ Given(/^I have a phone number "([^"]*)"$/) do |number|
 end
 
 When(/^I send message "([^"]*)"$/) do |message|
-  @status = @client.sms(@number, message)
+  @status = @client.deliver(@number, message)
 end
 
 When(/^I should get status "([^"]*)"$/) do |status|

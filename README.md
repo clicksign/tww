@@ -36,7 +36,7 @@ end
 
 client = TWW.client
 
-client.sms('11987654321', 'Hello World using old fashioned SMS')
+client.deliver('11987654321', 'Hello World using old fashioned SMS')
 client.call('11987654321', 'I just called to say I love you')
 ```
 
@@ -44,7 +44,7 @@ You can inspect TWW response:
 
 ```
 # Previous setup
-resp = client.sms('11987654321', 'Hello World using old fashioned SMS')
+resp = client.deliver('11987654321', 'Hello World using old fashioned SMS')
 
 case
 when resp.ok?
@@ -76,7 +76,7 @@ TWW.enable_testing!
 RSpec.describe 'TWW Testing' do
   before
     client = TWW.client
-    resp = client.sms('11987654321', 'Hello World from TWW Gem')
+    resp = client.deliver('11987654321', 'Hello World from TWW Gem')
   end
 
   it 'is not empty' do

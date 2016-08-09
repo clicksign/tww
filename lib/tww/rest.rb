@@ -9,8 +9,8 @@ module TWW
     CALL = 'http://webservices.fonadas.tww.com.br' +
       '/ws/Fonadas.asmx/EnviaFonada'
 
-    def sms(phone, message, extras = {})
-      request(SMS, sms_params(phone, message, extras))
+    def deliver(phone, message, extras = {})
+      request(SMS, deliver_params(phone, message, extras))
     end
 
     def call(phone, message, extras = {})
@@ -39,7 +39,7 @@ module TWW
       }.merge(extras)
     end
 
-    def sms_params(phone, message, extras)
+    def deliver_params(phone, message, extras)
       {
         NumUsu: config.username,
         Senha: config.password,

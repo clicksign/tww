@@ -5,7 +5,7 @@ shared_examples 'client' do
   let(:message) { 'Hello World' }
 
   describe 'sms message' do
-    subject { client.sms(phone, message) }
+    subject { client.deliver(phone, message) }
 
     context 'with valid number' do
       let(:phone) { '11987654321' }
