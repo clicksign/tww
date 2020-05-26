@@ -1,11 +1,14 @@
+# frozen_string_literal: true
+
 require 'tww/response'
 
 module TWW
   class Client
     attr_reader :config, :sent
 
-    def initialize
-      @config, @sent = TWW.config, []
+    def initialize(config)
+      @config = config
+      @sent = []
     end
 
     def clear!
@@ -16,11 +19,11 @@ module TWW
       sent.size
     end
 
-    def deliver(phone, message, extras = {})
+    def deliver(_phone, _message, _extras = {})
       raise 'Need to be implemented'
     end
 
-    def call(phone, message, extras = {})
+    def call(_phone, _message, _extras = {})
       raise 'Need to be implemented'
     end
   end

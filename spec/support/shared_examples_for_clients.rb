@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples 'client' do
   subject(:client) { TWW.client }
 

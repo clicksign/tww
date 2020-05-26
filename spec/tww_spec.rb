@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe TWW do
@@ -20,6 +22,5 @@ describe TWW do
     subject { client }
 
     it { should_not be_nil }
-    it { should eq(TWW.client) }
   end
 end
