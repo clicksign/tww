@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'restclient'
 require 'tww/client'
 
@@ -18,6 +20,7 @@ module TWW
     end
 
     private
+
     def call_params(phone, message, extras)
       now = Time.now.strftime('%Y-%m-%d %H:%M:%S')
 
@@ -50,7 +53,12 @@ module TWW
     end
 
     def request(url, params)
-      xml = RestClient.post(url, params)
+      xml = RestClient::Request.new(
+        method: :post,
+        url: url,
+        payload: params,
+        timeout: config.timeout
+      ).execute
       Response.parse(xml)
     end
   end
