@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module TWW
-  Config = Struct.new(:username, :password, :from, :layout, :timeout) do
+  Config = Struct.new(:username, :password, :from, :layout, :timeout, :endpoint) do
     def merge(attributes = {})
       attributes.empty? ? self : dup.copy(attributes)
     end

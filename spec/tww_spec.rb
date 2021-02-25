@@ -13,9 +13,9 @@ describe TWW do
     it { should eq(TWW.config) }
     it { should eq(client.config) }
 
-    it { expect(config.username).to eq('acme') }
-    it { expect(config.password).to eq('valid') }
-    it { expect(config.from).to eq('ACME Inc.') }
+    it { should include(username: 'acme') }
+    it { should include(password: 'valid') }
+    it { should include(from: 'ACME Inc.') }
   end
 
   describe 'client' do

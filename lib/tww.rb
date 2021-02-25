@@ -1,15 +1,18 @@
 # frozen_string_literal: true
 
 require 'tww/version'
-require 'tww/config'
 require 'tww/client'
 require 'tww/rest'
 require 'tww/testing'
 
 module TWW
+  @config = {}
+  @factory = TWW::REST
+
   class << self
+    attr_accessor :factory
+
     def config
-      @config ||= Config.new
       @config.tap { |config| yield(config) if block_given? }
     end
 
@@ -25,6 +28,4 @@ module TWW
       @factory = TWW::REST
     end
   end
-
-  disable_testing!
 end

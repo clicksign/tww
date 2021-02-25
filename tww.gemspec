@@ -7,10 +7,10 @@ Gem::Specification.new do |spec|
   spec.name          = 'tww'
   spec.version       = TWW::VERSION
   spec.authors       = ['Daniel Libanori']
-  spec.email         = ['daniellibanori@gmail.com']
+  spec.email         = ['daniel.libanori@clicksign.com']
 
   spec.summary       = 'Send SMS from TWW provider'
-  spec.homepage      = 'https://github.com/dlibanori/tww'
+  spec.homepage      = 'https://github.com/clicksign/tww'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
