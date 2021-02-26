@@ -25,13 +25,5 @@ RSpec.configure do |config|
     stub_request(:post, 'https://webservices2.twwwireless.com.br/reluzcap/wsreluzcap.asmx/EnviaSMS')
       .with(body: hash_including('NumUsu' => 'acme', Senha: 'valid', 'Celular' => '11987654321'))
       .to_return(body: %(<?xml version="1.0" encoding="utf-8"?>\n<string xmlns="https://www.twwwireless.com.br/reluzcap/wsreluzcap">OK</string>))
-
-    stub_request(:post, 'http://webservices.fonadas.tww.com.br/ws/Fonadas.asmx/EnviaFonada')
-      .with(body: hash_including('numusu' => 'acme', senha: 'valid', 'telefone' => '11987654321'))
-      .to_return(body: %(<?xml version="1.0" encoding="utf-8"?>\n<string xmlns="http://webservices.fonadas.tww.com.br/">OK</string>))
-
-    stub_request(:post, 'http://webservices.fonadas.tww.com.br/ws/Fonadas.asmx/EnviaFonada')
-      .with(body: hash_including('numusu' => 'acme', senha: 'valid', 'telefone' => 'invalid'))
-      .to_return(body: %(<?xml version="1.0" encoding="utf-8"?>\n<string xmlns="http://webservices.fonadas.tww.com.br/">NOK</string>))
   end
 end

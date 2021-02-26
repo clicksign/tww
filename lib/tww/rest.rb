@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'restclient'
+require 'net/http'
 require 'tww/client'
 
 module TWW
@@ -10,16 +10,6 @@ module TWW
         '/reluzcap/wsreluzcap.asmx/EnviaSMS',
       secondary: 'https://webservices2.twwwireless.com.br' \
         '/reluzcap/wsreluzcap.asmx/EnviaSMS'
-    }.freeze
-
-    BASE_MESSAGE = {
-      retry: 0,
-      retrytime: 0,
-      var2: nil,
-      var3: nil,
-      var4: nil,
-      var5: nil,
-      var6: nil
     }.freeze
 
     def deliver(phone, message, extras = {})
@@ -43,14 +33,16 @@ module TWW
     end
 
     def request(url, params)
-      xml = RestClient::Request.new(
-        method: :post,
-        url: url,
-        payload: params,
-        timeout: config[:timeout]
-      ).execute
+      uri = URI(url)
+      use_ssl = uri.scheme == 'https'
 
-      Response.parse(xml)
+      Net::HTTP.start(uri.host, uri.port, use_ssl: use_ssl) do |http|
+        post = Net::HTTP::Post.new(uri)
+        post.set_form_data(params)
+        res = http.request(post)
+
+        Response.parse(res.body)
+      end
     end
   end
 end

@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'byebug'
 
 describe TWW::REST do
   include_examples 'client'
