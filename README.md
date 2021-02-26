@@ -32,6 +32,7 @@ TWW.config do |config|
   config[:password]= 'you password goes here'
   config[:from] = 'Your identification (OPTIONAL)'
   config[:layout] = 'Layout ID (JUST FOR VOICE MESSAGES)'
+  config[:endpoint] = :secondary # :primary is default
 end
 
 client = TWW.client
