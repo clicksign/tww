@@ -6,7 +6,7 @@ describe TWW::Testing do
   before(:all) { TWW.enable_testing! }
   after(:all) { TWW.disable_testing! }
 
-  describe 'test array'do
+  describe 'test array' do
     subject { client.size }
 
     before do

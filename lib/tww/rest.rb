@@ -1,65 +1,48 @@
 # frozen_string_literal: true
 
-require 'restclient'
+require 'net/http'
 require 'tww/client'
 
 module TWW
   class REST < Client
-    SMS = 'https://webservices.twwwireless.com.br' +
-      '/reluzcap/wsreluzcap.asmx/EnviaSMS'
-
-    CALL = 'http://webservices.fonadas.tww.com.br' +
-      '/ws/Fonadas.asmx/EnviaFonada'
+    ENDPOINTS = {
+      primary: 'https://webservices.twwwireless.com.br' \
+        '/reluzcap/wsreluzcap.asmx/EnviaSMS',
+      secondary: 'https://webservices2.twwwireless.com.br' \
+        '/reluzcap/wsreluzcap.asmx/EnviaSMS'
+    }.freeze
 
     def deliver(phone, message, extras = {})
-      request(SMS, deliver_params(phone, message, extras))
-    end
-
-    def call(phone, message, extras = {})
-      request(CALL, call_params(phone, message, extras))
+      request(endpoint, deliver_params(phone, message, extras))
     end
 
     private
 
-    def call_params(phone, message, extras)
-      now = Time.now.strftime('%Y-%m-%d %H:%M:%S')
-
-      {
-        numusu: config.username,
-        senha: config.password,
-        seunum: config.from,
-        idlayout: config.layout,
-        telefone: phone,
-        dataagendamento: now,
-        retry: 0,
-        retrytime: 0,
-        var1: message,
-        var2: nil,
-        var3: nil,
-        var4: nil,
-        var5: nil,
-        var6: nil
-      }.merge(extras)
+    def endpoint
+      ENDPOINTS[config.fetch(:endpoint, :primary)]
     end
 
     def deliver_params(phone, message, extras)
       {
-        NumUsu: config.username,
-        Senha: config.password,
-        SeuNum: config.from,
+        NumUsu: config[:username],
+        Senha: config[:password],
+        SeuNum: config[:from],
         Celular: phone,
         Mensagem: message
       }.merge(extras)
     end
 
     def request(url, params)
-      xml = RestClient::Request.new(
-        method: :post,
-        url: url,
-        payload: params,
-        timeout: config.timeout
-      ).execute
-      Response.parse(xml)
+      uri = URI(url)
+      use_ssl = uri.scheme == 'https'
+
+      Net::HTTP.start(uri.host, uri.port, use_ssl: use_ssl) do |http|
+        post = Net::HTTP::Post.new(uri)
+        post.set_form_data(params)
+        res = http.request(post)
+
+        Response.parse(res.body)
+      end
     end
   end
 end

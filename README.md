@@ -28,16 +28,16 @@ To send SMS:
 
 ```ruby
 TWW.config do |config|
-  config.username = 'you username goes here'
-  config.password= 'you password goes here'
-  config.from = 'Your identification (OPTIONAL)'
-  config.layout = 'Layout ID (JUST FOR VOICE MESSAGES)'
+  config[:username] = 'you username goes here'
+  config[:password]= 'you password goes here'
+  config[:from] = 'Your identification (OPTIONAL)'
+  config[:layout] = 'Layout ID (JUST FOR VOICE MESSAGES)'
+  config[:endpoint] = :secondary # :primary is default
 end
 
 client = TWW.client
 
 client.deliver('11987654321', 'Hello World using old fashioned SMS')
-client.call('11987654321', 'I just called to say I love you')
 ```
 
 You can inspect TWW response:
@@ -56,13 +56,6 @@ when resp.na?
 when resp.error?
   puts 'Unknow error'
 end
-```
-
-You can use obscure parameters from TWW API.
-
-```ruby
-# Previous setup
-client.call('11987654321', 'Var 1 value', var2: 'Var 2 value', retry: 3)
 ```
 
 To fake SMS:
@@ -92,7 +85,7 @@ end
 
 ## Support
 
-It supports Ruby version 2.1.x, 2.2.x and 2.3.x.
+It supports Ruby version 2.6 and later
 
 ## Development
 
