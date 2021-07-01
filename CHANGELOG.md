@@ -1,10 +1,13 @@
 # v2.0.0
 
-## Alterações
-- Remove dependência do rest-client
-- Otimiza symbols como chaves
+## Changes
+- Remove rest-client dependency
+- Optimize symbols as keys
+- Update bundler version
+- Update ruby version
+- Update dependency version
 
 # v1.2.0
 
-## Alterações
-- Adiciona timeout na request da gem da TWW
+## Changes
+- Add timeout to TWW gem request
